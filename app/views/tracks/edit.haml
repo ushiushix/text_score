@@ -1,0 +1,48 @@
+-# -*- coding: utf-8 -*-
+- @title = "楽譜の編集"
+= javascript_include_tag 'audio5.min'
+
+:javascript
+  $(document).ready(function() {
+    player();
+    /*
+    $(window).on('beforeunload', function(){
+      player().destroy();
+    });
+    */
+    var play_func = function() {
+      $('#play_button').unbind('click')
+      .click(stop_func).text('停止');
+      play('#{url(:tracks, :play_data_mp3, :id => @track.id)}', function(){
+        $('#play_button').unbind('click')
+        .click(play_func).text('再生');
+      });
+    };
+    var stop_func = function(){
+      player().pause();
+      $('#play_button').unbind('click')
+      .click(play_func).text('再生');
+    };
+    var note_add_func = function() {
+      var newNote = $("#note").val() + " " + $("#note_st").val();
+      if ($("#note_gt").val() != '-') {
+        newNote += " " + $("#note_gt").val();
+      }
+      $("#track_score").beginningOfLine().insertAtCursor(newNote + "\n");
+      $(this).focus();
+      return false;
+    };
+    $('#add_button').click(note_add_func);
+    $('#play_button').click(play_func);
+    $('#song_show_button').click(function() {document.location = '#{url(:songs, :show, :id => @song.id)}'});
+    $('#song_index_button').click(function() {document.location = '#{url_for(:songs, :index)}'});
+    $('#track_score').focusEnd();
+    $('#main').focus();
+  });
+
+%h2.title{tabindex: '0', id: 'main'}
+  楽譜の編集:
+  =h @track.song.title
+
+=form_for :track, url(:tracks, :update, :id => @track.id), :method => :put, :class => :form, :name => 'f' do |f|
+  =partial "tracks/form", :locals => { :f => f }

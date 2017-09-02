@@ -1,0 +1,22 @@
+-# -*- coding: utf-8 -*-
+- @title = "#{h @song.title}"
+- @midi_uri = "#{request.env['REQUEST_URI']}.mid"
+%h2.title
+  =h "#{@song.title}の再生"
+%ul
+  %li= link_to '戻る', url(:songs, :show, :id => @song.id)
+  %li= link_to 'ダウンロード', @midi_uri
+%object{:id => "MediaPlayer",
+  :width => "100", :height => "100",
+  :classid => "CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95",
+  :codebase => "http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715",
+  :standby => "Loading MicrosoftR WindowsR Media Player components...",
+  :type => "application/x-oleobject"}
+  <param name="FileName" value="#{@midi_uri}" />
+  <param name="AutoStart" value="true" />
+  <param name="ShowControls" value="true" />
+  <param name="ShowAudioControls" value="true" />
+  <param name="ShowPositionControls value="false" />
+  <param name="ShowTracker" value="false" />
+  <embed name="MediaPlayer" type="application/x-mplayer2" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" src="#{@midi_uri}" width="100" height="100" autostart="1" showcontrols="1" showpositioncontrols="0" showaudiocontrols="1" showtracker="0">
+  </embed>

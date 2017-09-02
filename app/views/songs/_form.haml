@@ -1,0 +1,17 @@
+-# -*- coding: utf-8 -*-
+%ul#song_info
+  %li
+    =f.label :title, :caption => '題名'
+    =f.error_message_on :title
+    =f.text_field :title, :class => :text_field, :value => h(@song.title)
+  %li
+    =f.label :tempo, :caption => 'テンポ'
+    =f.error_message_on :tempo
+    =f.text_field :tempo, :class => :text_field, :value => h(@song.tempo)
+#op_panel
+  %ul
+    %li= f.submit '保存', :class => :button
+    - if @song.id
+      %li= f.submit 'キャンセル', :onclick => "window.location='#{url(:songs, :show, :id => @song.id)}';return false", :class => :button
+    - else
+      %li= f.submit 'キャンセル', :onclick => "window.location='#{url(:songs, :index)}';return false", :class => :button

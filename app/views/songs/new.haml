@@ -1,0 +1,4 @@
+-# -*- coding: utf-8 -*-
+%h2.title 曲の作成
+=form_for :song, url(:songs, :create), :class => :form do |f|
+  =partial "songs/form", :locals => { :f => f }

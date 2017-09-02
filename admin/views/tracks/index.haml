@@ -1,0 +1,39 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:tracks, :index)
+      %li=link_to pat(:new), url(:tracks, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:tracks)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:track, :id)
+          %th=mat(:track, :name)
+          %th=mat(:track, :track_number)
+          %th=mat(:track, :song_id)
+          %th=mat(:track, :score)
+          %th=mat(:track, :created_at)
+          %th=mat(:track, :updated_at)
+          %th=mat(:track, :program)
+          %th.last="&nbsp;".html_safe
+        -@tracks.each do |track|
+          %tr
+            %td.first=track.id
+            %td=track.name
+            %td=track.track_number
+            %td=track.song_id
+            %td=track.score
+            %td=track.created_at
+            %td=track.updated_at
+            %td=track.program
+            %td.last
+              =button_to pat(:edit), url(:tracks, :edit, :id => track.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:tracks, :destroy, :id => track.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')"
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+=content_for :sidebar, partial("base/sidebar")
