@@ -1,0 +1,60 @@
+-# -*- coding: utf-8 -*-
+- @title =h @song.title
+= javascript_include_tag 'audio5.min'
+
+:javascript
+  $(document).ready(function() {
+    player();
+    /*
+    $(window).on('beforeunload', function(){
+      player().destroy();
+    });
+    */
+    var play_func = function() {
+      $('#play_button').unbind('click')
+      .click(stop_func).text('停止');
+      play('#{url(:songs, :play_data_mp3, :id => @song.id)}', function(){
+        $('#play_button').unbind('click')
+        .click(play_func).text('再生');
+      });
+    };
+    var stop_func = function(){
+      player().pause();
+      $('#play_button').unbind('click')
+      .click(play_func).text('再生');
+    };
+    $('#play_button').click(play_func);
+    $('#edit_button').click(function() { document.location = '#{url_for(:songs, :edit, :id => @song.id)}';});
+    $('#song_index_button').click(function() {document.location = '#{url_for(:songs, :index)}'});
+    $('#main').focus();
+  });
+%h2.title{tabindex: '0', id: 'main'}
+  =h "曲名: #{@song.title}"
+#song_info_box
+  %ul#song_info
+    %li
+      アーティスト:
+      =h @song.account.name
+    %li
+      テンポ: 
+      =h @song.tempo
+    %li
+      楽器数:
+      =@song.tracks.length
+#track_list_box
+  %h3.title 楽器
+  %ul.bulleted#track_list
+    = partial 'songs/track', :collection => @song.tracks
+    %li= link_to 'ドラムを追加', url(:tracks, :new, :song_id => @song.id, :mode => 'drum')
+    %li= link_to '楽器を追加', url(:tracks, :new, :song_id => @song.id)
+
+#op_panel
+  %form{action: '#'}
+    %ul
+      %li
+        %button{id: 'play_button', type: 'button'} 再生
+      %li
+        %button{id: 'edit_button', type: 'button'} 曲情報変更
+      %li= link_to 'MP3ダウンロード', url(:songs, :play_data_mp3, :id => @song.id)
+      %li= link_to 'MIDIダウンロード', url(:songs, :play_data, :id => @song.id)
+      %li= link_to '曲の一覧へ', url(:songs, :index)

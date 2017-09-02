@@ -1,0 +1,17 @@
+-# -*- coding: utf-8 -*-
+- @title = 'ログイン'
+%h1 ログイン - TextScore
+.flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+=form_tag(url(:sessions, :create), :class => 'form login') do
+  %table
+    %tr
+      %td
+        %label.label.right Login
+      %td
+        .right=text_field_tag :email, :value => params[:email], :class => :text_field
+    %tr
+      %td
+        %label.label.right Password
+      %td
+        .right=password_field_tag :password, :value => params[:password], :class => :text_field
+  .right=submit_tag('Sign In', :class => :button)

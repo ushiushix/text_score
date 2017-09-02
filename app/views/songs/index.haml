@@ -1,0 +1,17 @@
+-# -*- coding: utf-8 -*-
+- @title = "曲の一覧"
+
+#my_songs_box
+  %h2.title
+    ="#{current_account.name}さんの曲一覧"
+  %ul#my_songs{:class => 'bulleted'}
+    %li= link_to '作曲開始', url(:songs, :new)
+    = partial 'songs/song', :collection => @my_songs
+#public_songs_box
+  - if @public_songs.length > 0
+    %h2.title みんなの曲一覧
+    %ul#public_songs{:class => 'bulleted'}
+      = partial 'songs/song', :collection => @public_songs
+#op_panel
+  %ul
+    %li= link_to 'ログアウト', url(:sessions, :destroy, :format => :js), :method => :delete, :confirm => 'ログアウトしますか?'

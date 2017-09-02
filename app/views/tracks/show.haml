@@ -1,0 +1,9 @@
+-# -*- coding: utf-8 -*-
+- @title = @song.title
+%h2.title
+  =h "#{@track.track_number}: #{@track.name} | #{@track.song.title}"
+%pre.code
+  =h @track.score
+
+%ul
+  %li= link_to 'トラック編集', url_for(:tracks, :edit, :id => @track.id)

@@ -1,0 +1,52 @@
+-# -*- coding: utf-8 -*-
+%ul#track_info
+  - if @track.mode == :melody
+    %li
+      =f.label :name, :caption => '楽器'
+      =f.select :name, :options => @patch_names
+    =f.hidden_field :track_number, :value => @track.track_number || @track_numbers.first
+  - else
+    %li
+      =f.label :name, :caption => '楽器'
+      =f.text_field :name
+    =f.hidden_field :track_number, :value => @track.track_number
+#score_box
+  %h3.title 入力ガイド
+  .input_guide
+    -if @track.mode == :melody
+      %label{for: 'note'} 音符:
+      =select_tag :note, options: Track::NOTES_INST, selected: Track::DEFAULT_NOTE, id: 'note'
+    -else
+      %label{for: 'note'} 打楽器:
+      %select{name:'track_note', id: 'note'}
+        -Track::NOTES_DRUM.each do |num,name|
+          %option{value:num} #{name}(#{num})
+    %label{for: 'note_st'} ステップ:
+    =select_tag :note_st, options: Track::LENGTHS, selected: Track::DEFAULT_LENGTH, id: 'note_st'
+    %label{for: 'note_gt'} 長さ:
+    =select_tag :note_gt, options: (['-'] + Track::LENGTHS), selected: '-', id: 'note_gt'
+    %button{id: 'add_button', type: 'button' } 追加
+  %h3.title
+    =f.label :score, :caption => '楽譜'
+  .score_area
+    .score_message
+      =f.label :score, :caption => (f.error_message_on :score)
+    .score
+      =f.text_area :score, :class => :code, :value => h(@track.score), :cols=> '30', :rows => 20
+  %input{:type => :hidden, :class => :hidden, :name => 'song_id', :value => @song.id}
+  %input{:type => :hidden, :class => :hidden, :name => 'play_now', :value => 'false'}
+  :javascript
+    $(function(){
+      if ($('span[class="error"]').length > 0) {
+        alert("エラーがあります");
+      }
+    });
+#op_panel
+  %ul
+    %li= f.submit '保存', :class => :button
+    %li
+      %button{id: 'play_button', type: 'button'} 再生
+    %li
+      %button{id: 'song_show_button', type: 'button'} 曲に戻る
+    %li
+      %button{id: 'song_index_button', type: 'button'} 曲の一覧へ

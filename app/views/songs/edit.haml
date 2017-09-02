@@ -1,0 +1,7 @@
+-# -*- coding: utf-8 -*-
+- @title = "曲情報の変更"
+
+%h2.title 曲情報の変更
+
+=form_for :song, url(:songs, :update, :id => @song.id), :method => :put, :class  => :form do |f|
+  =partial "songs/form", :locals => { :f => f }

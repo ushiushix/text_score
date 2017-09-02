@@ -1,0 +1,16 @@
+-# -*- coding: utf-8 -*-
+!!!
+%html
+  %head
+    %title= [@title, "Text Score"].compact.join(" | ")
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    -#%meta{:content => 'IE=8;IE=7;IE=5', 'http-equiv' => 'X-UA-Compatible'}
+    = stylesheet_link_tag 'reset', 'application'
+    = javascript_include_tag 'jquery', 'jquery-ujs', 'application'
+    = yield_content :include
+  %body
+    #header
+      %h1 TextScore
+    #container
+      .flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join.html_safe
+      = yield
