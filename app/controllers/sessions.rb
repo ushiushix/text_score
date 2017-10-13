@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-TScore.controllers :sessions do
+TScore::App.controllers :sessions do
   get :new do
     render "/sessions/new"
   end

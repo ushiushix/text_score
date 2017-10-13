@@ -9,17 +9,17 @@ class Account < ActiveRecord::Base
   validates_confirmation_of :password,                   :if => :password_required
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :email,    :case_sensitive => false
-  #validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of       :role,     :with => /[A-Za-z]/
 
   # Callbacks
   before_save :encrypt_password, :if => :password_required
 
   ##
-  # This method is for authentication purpose
+  # This method is for authentication purpose.
   #
   def self.authenticate(email, password)
-    account = find_by(email: email ) if email.present?
+    account = where("lower(email) = lower(?)", email).first if email.present?
     account && account.has_password?(password) ? account : nil
   end
 
@@ -28,8 +28,11 @@ class Account < ActiveRecord::Base
   end
 
   private
+
   def encrypt_password
-    self.crypted_password = ::BCrypt::Password.create(password)
+    value = ::BCrypt::Password.create(password)
+    value = value.force_encoding(Encoding::UTF_8) if value.encoding == Encoding::ASCII_8BIT
+    self.crypted_password = value
   end
 
   def password_required

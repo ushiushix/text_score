@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'uri'
 
-TScore.controllers :songs do
+TScore::App.controllers :songs do
   # get :index, :map => "/foo/bar" do
   #   session[:foo] = "bar"
   #   render 'index'

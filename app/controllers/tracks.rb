@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-TScore.controllers :tracks do
+TScore::App.controllers :tracks do
   get :new, :map => '/tracks/new/:song_id' do
     @track = Track.new
     if params[:mode] == 'drum'

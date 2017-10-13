@@ -1,5 +1,4 @@
-Admin.controllers :sessions do
-
+TScore::Admin.controllers :sessions do
   get :new do
     render "/sessions/new", nil, :layout => false
   end
@@ -13,9 +12,9 @@ Admin.controllers :sessions do
       set_current_account(account)
       redirect url(:base, :index)
     else
-      params[:email], params[:password] = h(params[:email]), h(params[:password])
-      flash[:warning] = "Login or password wrong."
-      redirect url(:sessions, :new)
+      params[:email] = h(params[:email])
+      flash.now[:error] = pat('login.error')
+      render "/sessions/new", nil, :layout => false
     end
   end
 
