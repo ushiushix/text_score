@@ -16,7 +16,7 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          =link_to 'Padrino', url(:base, :index), :class => 'navbar-brand', :title => 'Padrino Admin'
+          =link_to 'データ管理ページ', url(:base, :index), :class => 'navbar-brand', :title => 'Admin Page'
           %ul.nav.navbar-nav.pull-right
             %li.navbar-edit-account=link_to tag_icon(:user), url(:accounts, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link'
             %li.navbar-logout
@@ -39,11 +39,8 @@
         %p.pull-left
           Copyright &copy;
           =Time.now.year
-          Your Site - Powered by Padrino v.#{Padrino.version}
+          Koichi Inoue
         %ul.pull-right.footer-links
-          %li= link_to tag_icon(:home, 'web'), 'http://www.padrinorb.com', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:heart, 'blog'), 'http://www.padrinorb.com/blog', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:github, 'code'), 'https://github.com/padrino/padrino-framework', :target => :_blank, :class => 'footer-links-link'
-          %li= link_to tag_icon(:twitter, 'twitter'), 'http://twitter.com/padrinorb', :target => :_blank, :class => 'footer-links-link'
+          %li= link_to tag_icon(:home, 'web'), 'https://github.com/ushiushix/text_score', :target => :_blank, :class => 'footer-links-link'
 
     =javascript_include_tag 'jquery-1.11.0.min', (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application
