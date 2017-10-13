@@ -72,10 +72,10 @@ h3.title {
   padding-left: 2em;
   line-height: 1.5em; }
 
-#song_info, #track_list {
+#song_info, #track_list, #profile_info {
   line-height: 1.5em; }
 
-#song_info_box, #track_list_box {
+#song_info_box, #track_list_box, #profile_box {
   padding-left: 2em;
   margin-top: 10px;
   margin-bottom: 30px; }

@@ -1,0 +1,14 @@
+-# -*- coding: utf-8 -*-
+- @title = "ユーザー情報"
+
+#profile_box
+  %h2.title
+    ="#{current_account.name}さん"
+  %dl#profile_info
+    %li= "名前: #{@account.name}"
+    %li= "Eメール(ログイン文字列): #{@account.email}"
+
+#op_panel
+  %ul
+    %li= link_to '編集', url(:profiles, :edit, :id => @account.id)
+    %li= button_to 'ログアウト', url(:sessions, :destroy), :method => :delete, :confirm => true

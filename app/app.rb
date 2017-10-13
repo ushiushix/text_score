@@ -85,6 +85,7 @@ module TScore
     access_control.roles_for :admin, :users do |role|
       role.project_module :songs, "/songs"
       role.project_module :tracks, "/tracks"
+      role.project_module :profiles, "/profiles"
     end
   end
 end

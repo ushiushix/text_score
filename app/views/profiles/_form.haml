@@ -1,0 +1,22 @@
+-# -*- coding: utf-8 -*-
+%ul#profile_info
+  %li
+    =f.label :name, :caption => '名前'
+    =f.error_message_on :name
+    =f.text_field :name, :class => :text_field, :value => h(@account.name)
+  %li
+    =f.label :email, :caption => 'Eメール'
+    =f.error_message_on :email
+    =f.text_field :email, :class => :text_field, :value => h(@account.email)
+  %li
+    =f.label :password, :caption => 'パスワード'
+    =f.error_message_on :password
+    =f.password_field :password, :value => ''
+  %li
+    =f.label :password_confirmation, :caption => 'パスワード再入力'
+    =f.error_message_on :password_confirmation
+    =f.password_field :password_confirmation, :value => ''
+#op_panel
+  %ul
+    %li= f.submit '保存', :class => :button
+    %li= f.submit 'キャンセル', :onclick => "window.location='#{url(:profiles, :show, :id => @account.id)}';return false", :class => :button
