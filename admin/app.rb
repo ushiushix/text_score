@@ -37,6 +37,7 @@ module TScore
 
     access_control.roles_for :admin do |role|
       role.project_module :accounts, '/accounts'
+      role.project_module :songs, '/songs'
     end
 
     # Custom error management 
