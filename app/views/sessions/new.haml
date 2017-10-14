@@ -1,7 +1,7 @@
 -# -*- coding: utf-8 -*-
 - @title = 'ログイン'
 %h1 ログイン - TextScore
-.flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join
+.flash=[:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join.html_safe
 =form_tag(url(:sessions, :create), :class => 'form login') do
   %table
     %tr

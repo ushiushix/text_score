@@ -1,7 +1,7 @@
 -# -*- coding: utf-8 -*-
 - @title = "ユーザー情報の変更"
 
-%h2.title= #{@account.name} - プロファイルの編集
+%h2.title= #{@account.name} - ユーザー情報の変更
 
 =form_for :account, url(:profiles, :update, :id => @account.id), :method => :put, :class  => :form do |f|
   =partial "profiles/form", :locals => { :f => f }

@@ -96,4 +96,9 @@ h3.title {
 .input_guide {
   margin-top: 10px;
   margin-bottom: 15px;
-  overflow: hidden; }
+  overflow: hidden;
+}
+#logout {
+  width: 10em;
+  margin-left: auto;
+}

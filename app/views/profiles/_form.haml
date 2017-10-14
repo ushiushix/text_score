@@ -1,13 +1,6 @@
 -# -*- coding: utf-8 -*-
+%p パスワードを変更します。二つの欄に同じパスワードを入力してください。
 %ul#profile_info
-  %li
-    =f.label :name, :caption => '名前'
-    =f.error_message_on :name
-    =f.text_field :name, :class => :text_field, :value => h(@account.name)
-  %li
-    =f.label :email, :caption => 'Eメール'
-    =f.error_message_on :email
-    =f.text_field :email, :class => :text_field, :value => h(@account.email)
   %li
     =f.label :password, :caption => 'パスワード'
     =f.error_message_on :password

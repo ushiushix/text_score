@@ -1,5 +1,7 @@
 -# -*- coding: utf-8 -*-
 - @title = "ユーザー情報"
+#logout
+  = button_to 'ログアウト', url(:sessions, :destroy), :method => :delete, :confirm => true
 
 #profile_box
   %h2.title
@@ -10,5 +12,5 @@
 
 #op_panel
   %ul
-    %li= link_to '編集', url(:profiles, :edit, :id => @account.id)
-    %li= button_to 'ログアウト', url(:sessions, :destroy), :method => :delete, :confirm => true
+    %li= link_to 'パスワード変更', url(:profiles, :edit, :id => @account.id)
+    %li= link_to '曲の一覧へ', url(:songs, :index)

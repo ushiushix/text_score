@@ -14,4 +14,4 @@
       = partial 'songs/song', :collection => @public_songs
 #op_panel
   %ul
-    %li= link_to 'プロファイル管理', url(:profiles, :show, :id => current_account.id)
+    %li= link_to '設定・ログアウト', url(:profiles, :show, :id => current_account.id)

@@ -25,11 +25,12 @@ TScore::App.controllers :profiles do
       flash[:error] = '閲覧・編集する権限がありません'
       redirect url(:songs, :index)
     end
-    if params[:account][:password] != params[:account][:password_confirmation]
+    upd = params[:account].slice(:password, :password_confirmation)
+    if upd[:password] != upd[:password_confirmation] || upd.empty?
       flash[:error] = 'パスワードと確認用パスワードが一致しません。'
       render 'profiles/edit'
     end
-    if @account.update_attributes(params[:account])
+    if @account.update_attributes(upd)
       flash[:notice] = 'プロファイルが更新されました。'
       redirect url(:profiles, :show, :id => @account.id)
     else
