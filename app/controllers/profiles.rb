@@ -3,7 +3,7 @@ TScore::App.controllers :profiles do
 
   get :show, :with => :id do
     @account = Account.find(params[:id])
-    if (params[:id] != current_account.id && current_account.role != 'admin') || !@account
+    if (params[:id].to_i != current_account.id && current_account.role != 'admin') || !@account
       flash[:error] = '閲覧・編集する権限がありません'
       redirect url(:songs, :index)
     end
@@ -12,7 +12,7 @@ TScore::App.controllers :profiles do
   
   get :edit, :with => :id do
     @account = Account.find(params[:id])
-    if (params[:id] != current_account.id && current_account.role != 'admin') || !@account
+    if (params[:id].to_i != current_account.id && current_account.role != 'admin') || !@account
       flash[:error] = '閲覧・編集する権限がありません'
       redirect url(:songs, :index)
     end
@@ -21,7 +21,7 @@ TScore::App.controllers :profiles do
 
   put :update, :with => :id do
     @account = Account.find(params[:id])
-    if (params[:id] != current_account.id && current_account.role != 'admin') || !@account
+    if (params[:id].to_i != current_account.id && current_account.role != 'admin') || !@account
       flash[:error] = '閲覧・編集する権限がありません'
       redirect url(:songs, :index)
     end
