@@ -13,6 +13,13 @@
       return false;
     };
     $('#add_button').click(note_add_func);
+    $('.input_guide').keypress(function(e) {
+        if (e.which == 13 || e.which == 32) { // Enter key or Space key
+          note_add_func(e);
+          $(e.target).focus();
+          return false;
+        }
+    });
     $('#play_button').attr('disabled', true);
     $('#song_show_button').click(function() {document.location = '#{url(:songs, :show, :id => @song.id)}'});
     $('#song_index_button').click(function() {document.location = '#{url_for(:songs, :index)}'});
