@@ -55,6 +55,5 @@
         %button{id: 'play_button', type: 'button'} 再生
       %li
         %button{id: 'edit_button', type: 'button'} 曲情報変更
-      %li= link_to 'MP3ダウンロード', url(:songs, :play_data_mp3, :id => @song.id)
-      %li= link_to 'MIDIダウンロード', url(:songs, :play_data, :id => @song.id)
+      %li= link_to '追加機能', url(:songs, :show_extra, :id => @song.id)
       %li= link_to '曲の一覧へ', url(:songs, :index)

@@ -1,0 +1,62 @@
+-# -*- coding: utf-8 -*-
+- @title =h "#{@song.title} - 追加機能"
+= javascript_include_tag 'audio5.min'
+
+:javascript
+  $(document).ready(function() {
+    player();
+    /*
+    $(window).on('beforeunload', function(){
+      player().destroy();
+    });
+    */
+    var select_play_func = function() {
+      var selected = $('[class="selected_tracks"]:checked').map(function() {
+        return $(this).val();
+      }).get();
+      if (selected.length == 0) {
+        alert("演奏する楽器を選んでください");
+        return false;
+      }
+      var sparam = '?tracks=' + selected.join(',');
+      $('#play_button').unbind('click')
+      .click(stop_func).text('停止');
+      play('#{url(:songs, :play_data_mp3, :id => @song.id)}' + sparam, function(){
+        $('#play_button').unbind('click')
+        .click(select_play_func).text('再生');
+      });
+    };
+    var stop_func = function(){
+      player().pause();
+      $('#play_button').unbind('click')
+      .click(select_play_func).text('再生');
+    };
+    $('#play_button').click(select_play_func);
+    $('#song_index_button').click(function() {document.location = '#{url_for(:songs, :index)}'});
+    $('#main').focus();
+  });
+%h2.title{tabindex: '0', id: 'main'}
+  =h "曲名: #{@song.title} (追加機能)"
+%h3.title 楽器を選んで演奏
+%form{action: "#", id: "selectplay"}
+  %table
+    %tr
+      %th 選択
+      %th 楽器
+    - @song.tracks.each do |t|
+      %tr
+        %td
+          =check_box_tag "play_#{t.track_number}", :checked => true, :id => "play_#{t.track_number}", :class => 'selected_tracks', :value => t.track_number
+        %td
+          ="#{t.track_number} #{t.name}"
+  %button{id: 'play_button', type: 'button'} 再生
+
+%h3.titleダウンロード
+%ul
+  %li= link_to 'MP3ダウンロード', url(:songs, :play_data_mp3, :id => @song.id)
+  %li= link_to 'MIDIダウンロード', url(:songs, :play_data_midi, :id => @song.id)
+
+#op_panel
+  %ul
+    %li= link_to '通常機能へ', url(:songs, :show, :id => @song.id)
+    %li= link_to '曲の一覧へ', url(:songs, :index)

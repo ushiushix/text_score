@@ -32,6 +32,11 @@ TScore::App.controllers :songs do
     render 'songs/show'
   end
 
+  get :show_extra, :with => :id do
+    @song = Song.find(params[:id])
+    render 'songs/show_extra'
+  end
+
   get :new do
     @song = Song.new
     @song.tempo = 100
@@ -68,7 +73,7 @@ TScore::App.controllers :songs do
     end
   end
 
-  get :play_data, :map => '/songs/play/:id.mid' do
+  get :play_data_midi, :map => '/songs/play/:id.mid' do
     song = Song.find(params[:id])
     body = MidiConverter.new.convert(song)
     [200,
@@ -80,7 +85,9 @@ TScore::App.controllers :songs do
 
   get :play_data_mp3, :map => '/songs/play/:id.mp3' do
     song = Song.find(params[:id])
-    body = MidiConverter.new.render_to_mp3(song)
+    tns = params[:tracks].split(',').map(&:to_i) rescue nil
+    tracks = tns == nil ? nil : song.tracks.select {|t| tns.include?(t.track_number) }
+    body = MidiConverter.new.render_to_mp3(song, tracks)
     [200,
      {'Content-Type' => 'audio/mp3',
        'Content-Disposition' => "attachment; filename*=UTF-8''#{URI::escape(song.title)}.mp3",
