@@ -1,5 +1,5 @@
 -# -*- coding: utf-8 -*-
-- @title =h "#{@song.title} - 追加機能"
+- @title =h "#{@song.title} - その他の機能"
 = javascript_include_tag 'audio5.min'
 
 :javascript
@@ -36,7 +36,7 @@
     $('#main').focus();
   });
 %h2.title{tabindex: '0', id: 'main'}
-  =h "曲名: #{@song.title} (追加機能)"
+  =h "その他の機能: #{@song.title}"
 %h3.title 楽器を選んで演奏
 %form{action: "#", id: "selectplay"}
   %table
@@ -58,5 +58,5 @@
 
 #op_panel
   %ul
-    %li= link_to '通常機能へ', url(:songs, :show, :id => @song.id)
+    %li= link_to '曲に戻る', url(:songs, :show, :id => @song.id)
     %li= link_to '曲の一覧へ', url(:songs, :index)
