@@ -39,17 +39,19 @@
   =h "その他の機能: #{@song.title}"
 %h3.title 楽器を選んで演奏
 %form{action: "#", id: "selectplay"}
-  %table
-    %tr
-      %th 選択
-      %th 楽器
-    - @song.tracks.each do |t|
+  #track_list_box
+    %table
       %tr
-        %td
-          =check_box_tag "play_#{t.track_number}", :checked => true, :id => "play_#{t.track_number}", :class => 'selected_tracks', :value => t.track_number
-        %td
-          ="#{t.track_number} #{t.name}"
-  %button{id: 'play_button', type: 'button'} 再生
+        %th 選択
+        %th 楽器
+      - @song.tracks.each do |t|
+        %tr
+          %td
+            =check_box_tag "play_#{t.track_number}", :checked => true, :id => "play_#{t.track_number}", :class => 'selected_tracks', :value => t.track_number
+          %td
+            %label{for: "play_#{t.track_number}"}
+              ="#{t.track_number} #{t.name}"
+    %button{id: 'play_button', type: 'button'} 再生
 
 %h3.titleダウンロード
 %ul
