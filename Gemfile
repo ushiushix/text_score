@@ -17,7 +17,7 @@ gem 'haml'
 gem 'activerecord', '~> 4.2.9', :require => "active_record"
 gem 'sqlite3'
 gem 'midilib'
-gem 'text_sequencer', :git => 'git://github.com/ushiushix/text_sequencer.git'
+gem 'text_sequencer', :git => 'https://github.com/ushiushix/text_sequencer.git'
 
 group :development do
   # Test requirements

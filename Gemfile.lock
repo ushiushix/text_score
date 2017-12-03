@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/ushiushix/text_sequencer.git
-  revision: b0cb1e437f7c11825f7901ad4fd45b13ce83d6a9
+  remote: https://github.com/ushiushix/text_sequencer.git
+  revision: 4a49de715c7f4444d426bbc4f08ddbb99bd10a67
   specs:
-    text_sequencer (0.1.2)
+    text_sequencer (1.0.0)
       midilib (>= 2.0.0)
 
 GEM
