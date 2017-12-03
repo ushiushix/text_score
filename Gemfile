@@ -19,6 +19,9 @@ gem 'sqlite3'
 gem 'midilib'
 gem 'text_sequencer', :git => 'https://github.com/ushiushix/text_sequencer.git'
 
+# server
+gem 'puma'
+
 group :development do
   # Test requirements
   gem 'rr', :group => "test"
