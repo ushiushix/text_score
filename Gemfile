@@ -21,6 +21,7 @@ gem 'text_sequencer', :git => 'https://github.com/ushiushix/text_sequencer.git'
 
 # server
 gem 'puma'
+gem 'puma_worker_killer'
 
 group :development do
   # Test requirements
