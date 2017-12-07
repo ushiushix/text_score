@@ -4,8 +4,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN apt-get update \
   && apt-get install -y make gcc sqlite3 libsqlite3-dev git \
-    timidity lame fluid-soundfont-gm --no-install-recommends \
-  && echo soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2 > /etc/timidity/timidity.cfg \
+    timidity lame --no-install-recommends \
   && bundle install --without development test \
   && apt-get purge -y make gcc libsqlite3-dev \
   && apt-get -y autoremove \
@@ -13,6 +12,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && ln -sf /data/t_score_production.db ./db/t_score_production.db \
   && ln -sf /data/ts_secret config/ts_secret \
-  && rm -rf log && ln -s /data/log ./log
+  && rm -rf log && ln -s /data/log ./log \
+  && ln -sf /data/timidity.cfg /etc/timidity/timidity.cfg
 EXPOSE 8080
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "production"]
