@@ -20,7 +20,7 @@ class MidiConverter
     mp3_file = Tempfile.new(%w[ t_score .mp3 ])
     seq.write(midi_file)
     midi_file.flush
-    system("timidity -A90,120a -Ow -o - #{midi_file.path} 2> /dev/null | lame -S - #{mp3_file.path}") or raise 'Conversion failed'
+    system("timidity --output-24bit -A90,120a -Ow -o - #{midi_file.path} 2> /dev/null | lame -S - #{mp3_file.path}") or raise 'Conversion failed'
     File.read(mp3_file.path)
   ensure
     midi_file.close!
