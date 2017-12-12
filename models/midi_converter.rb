@@ -38,8 +38,8 @@ class MidiConverter
     tracks.each do |t|
       new_track = Track.new(seq)
       seq.tracks << new_track
-      new_track.name = t.name
-      new_track.instrument = t.name
+      new_track.name = GM_PATCH_NAMES[t.program]
+      new_track.instrument = GM_PATCH_NAMES[t.program]
       new_track.events << Controller.new(t.track_number, CC_VOLUME, 127)
       new_track.events << ProgramChange.new(t.track_number, t.program, 100)
       exporter = TextSequencer::MidilibExporter.new(new_track, t.track_number)

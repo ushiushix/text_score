@@ -2,8 +2,10 @@
 %ul#track_info
   - if @track.mode == :melody
     %li
-      =f.label :name, :caption => '楽器'
-      =f.select :name, :options => @patch_names
+      =f.label :program, :caption => '楽器'
+      %select{name:'track[program]', id: 'track_program'}
+        -@patch_names.each_with_index do |name, i|
+          %option{value:i, selected:(@track.program == i)} #{name}
     =f.hidden_field :track_number, :value => @track.track_number || @track_numbers.first
   - else
     %li

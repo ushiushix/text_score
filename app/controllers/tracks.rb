@@ -7,7 +7,7 @@ TScore::App.controllers :tracks do
       @track.track_number = Track::SPECIAL_CHANNELS[:drum]
     end
     @song = Song.find(params[:song_id])
-    @patch_names = MIDI::GM_PATCH_NAMES
+    @patch_names = GM_PATCHES_LOCALIZED
     @track_numbers = (0..15).to_a - (@song.tracks.map(&:track_number) + Track::SPECIAL_CHANNELS.values)
     render 'tracks/new'
   end
@@ -26,9 +26,11 @@ TScore::App.controllers :tracks do
     end
     @track.song = @song
     if @track.mode != :drum
-      @track.program = MIDI::GM_PATCH_NAMES.index(@track.name)
+      @track.program = params[:track][:program].to_i
+      @track.name = GM_PATCHES_LOCALIZED[@track.program]
     else
       @track.program = 0
+      @track.name = 'Drum'
     end
     if @track.save
       flash[:notice] = 'パートが作成されました'
@@ -45,7 +47,7 @@ TScore::App.controllers :tracks do
   get :edit, :with => :id do
     @track = Track.find(params[:id])
     @song = @track.song
-    @patch_names = MIDI::GM_PATCH_NAMES
+    @patch_names = GM_PATCHES_LOCALIZED
     @track_numbers = ((0..15).to_a - (@song.tracks.map(&:track_number) + Track::SPECIAL_CHANNELS.values) + [@track.track_number]).sort
     render 'tracks/edit'
   end
@@ -59,7 +61,7 @@ TScore::App.controllers :tracks do
     end
     @track.assign_attributes(params[:track])
     if @track.mode != :drum
-      @track.program = MIDI::GM_PATCH_NAMES.index(@track.name)
+      @track.name = GM_PATCHES_LOCALIZED[@track.program]
     end
     if @track.score == ''
       @track.destroy
