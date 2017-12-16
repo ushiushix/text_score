@@ -1,4 +1,4 @@
 -# -*- coding: utf-8 -*-
 %li.song_item
-  .title= link_to "曲 #{h(song.title)}", url_for(:songs, :show, :id => song)
+  .title= link_to "曲 - #{h(song.title)}", url_for(:songs, :show, :id => song)
   .author=h song.account.name
