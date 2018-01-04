@@ -28,7 +28,7 @@
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
         %th.header= mat(:account, :id)
         %th.header= mat(:account, :name)
-        %th.header= mat(:account, :surname)
+        %th.header= mat(:account, :description)
         %th.header= mat(:account, :email)
         %th.header.list-row-action-header
 
@@ -39,7 +39,7 @@
             =check_box_tag 'account_ids[]', :value => account.id, :class => 'list-selectable-checkbox'
           %td.list-column=account.id
           %td.list-column=account.name
-          %td.list-column=account.surname
+          %td.list-column=account.description
           %td.list-column=account.email
           %td.list-column.list-row-action
             .list-row-action-wrapper
