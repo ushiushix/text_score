@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "a", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name",             limit: 255
-    t.string   "surname",          limit: 255
+    t.string   "description",      limit: 255
     t.string   "email",            limit: 255
     t.string   "crypted_password", limit: 255
     t.string   "role",             limit: 255
