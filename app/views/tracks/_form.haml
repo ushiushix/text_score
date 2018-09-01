@@ -34,7 +34,7 @@
     .score_message
       =f.label :score, :caption => (f.error_message_on :score)
     .score
-      =f.text_area :score, :class => :code, :value => h(@track.score), :cols=> '30', :rows => 20
+      =f.text_area :score, :class => :code, :value => h(@track.score), :cols=> '30', :rows => 20, :autocomplete => 'off', :autocorrect => 'off', :autocapitalize => 'off', :spellcheck => 'false'
   %input{:type => :hidden, :class => :hidden, :name => 'song_id', :value => @song.id}
   %input{:type => :hidden, :class => :hidden, :name => 'play_now', :value => 'false'}
   :javascript

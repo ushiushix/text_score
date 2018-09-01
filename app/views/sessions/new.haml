@@ -8,10 +8,10 @@
       %td
         %label.label.right Login
       %td
-        .right=text_field_tag :email, :value => params[:email], :class => :text_field
+        .right=email_field_tag :email, :value => params[:email], :class => :text_field, :required => true
     %tr
       %td
         %label.label.right Password
       %td
-        .right=password_field_tag :password, :value => params[:password], :class => :text_field
+        .right=password_field_tag :password, :value => params[:password], :class => :text_field, :required => true
   .right=submit_tag('Sign In', :class => :button)
