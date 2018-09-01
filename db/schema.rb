@@ -12,17 +12,6 @@
 
 ActiveRecord::Schema.define(version: 5) do
 
-  create_table "a", force: :cascade do |t|
-    t.string   "name",             limit: 255
-    t.string   "surname",          limit: 255
-    t.string   "email",            limit: 255
-    t.string   "crypted_password", limit: 255
-    t.string   "role",             limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "ip_address",       limit: 255
-  end
-
   create_table "accounts", force: :cascade do |t|
     t.string   "name",             limit: 255
     t.string   "description",      limit: 255
@@ -31,6 +20,21 @@ ActiveRecord::Schema.define(version: 5) do
     t.string   "role",             limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "ip_address",       limit: 255
+  end
+
+  create_table "mixed_songs", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.integer  "tempo"
+    t.integer  "account_id"
+    t.integer  "public"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "mixed_songs_tracks", force: :cascade do |t|
+    t.integer "mixed_song_id"
+    t.integer "track_id"
   end
 
   create_table "songs", force: :cascade do |t|
