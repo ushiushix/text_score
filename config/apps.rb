@@ -36,7 +36,7 @@ Padrino.configure_apps do
     end
     sec
   end.call
-  set :protection, :except => :path_traversal
+  set :protection, :except => [:path_traversal, :session_hijacking]
   set :protect_from_csrf, true
 end
 
