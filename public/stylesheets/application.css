@@ -2,25 +2,24 @@ body {
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background-color: #e6e0d9; }
-body pre {
+  background-color: #E6E0D9; }
+  body a {
+    color: #336699; }
+  body pre {
     display: block;
-    background-color: ghostwhite;
-  border: 1px solid #dedede;
+    background-color: #F8F8FF;
+    border: 1px solid #DEDEDE;
     color: #444444;
     line-height: 1.5em;
     margin-bottom: 10px;
     padding: 0.5em; }
-body ul.bulleted {
+  body ul.bulleted {
     margin-left: 20px;
     margin-bottom: 10px; }
-body ul.bulleted li {
-  list-style-type: square; }
-body ul.bulleted li span {
-    font-weight: bold; }
-:focus {
-    outline: 2px blue dashed;
-}
+    body ul.bulleted li {
+      list-style-type: square; }
+      body ul.bulleted li span {
+        font-weight: bold; }
 
 h2.title {
   font-size: 150%;
@@ -30,35 +29,33 @@ h2.title {
 h3.title {
   font-size: 120%;
   font-weight: bold;
-  padding-top: 5px;
-  padding-bottom: 5px; }
+  padding-bottom: 10px; }
 
-#op_panel {
-  margin-left: 0px;
+#op_panel ul {
+  margin-left: 80px;
   margin-top: 10px;
   float: left;
   overflow: hidden; }
-#op_panel ul li {
+  #op_panel ul li {
     float: left;
     margin-right: 20px;
     padding-bottom: 5px; }
-#op_panel ul li a:hover {
-  text-decoration: underline; }
-#op_panel button {
-  float: left;
-  margin-right: 20px;
-  padding-bottom: 5px; }
+    #op_panel ul li a:hover {
+      text-decoration: underline; }
 
 #header {
   background-color: #900209;
-  border-bottom: 2px solid #ec9a94;
+  border-bottom: 2px solid #EC9A94;
   overflow: hidden; }
-#header h1 {
-  float: left;
-  color: #ecebc3;
-  font-size: 2.3em;
-  font-weight: bold; }
+  #header h1 {
+    float: left;
+    color: #ECEBC3;
+    font-size: 2.3em;
+    font-weight: bold; }
 
+@media screen and (max-width: 1024px) {
+  #header {
+    display: none; } }
 #container {
   width: 95%;
   margin: 20px auto;
@@ -72,10 +69,10 @@ h3.title {
   padding-left: 2em;
   line-height: 1.5em; }
 
-#song_info, #track_list, #profile_info {
+#song_info, #track_list {
   line-height: 1.5em; }
 
-#song_info_box, #track_list_box, #profile_box {
+#song_info_box, #track_list_box {
   padding-left: 2em;
   margin-top: 10px;
   margin-bottom: 30px; }
@@ -85,20 +82,5 @@ h3.title {
 
 #score_box {
   margin-top: 2em; }
-.score_message {
-  font-weight: bold;
-  color: #c71585;
-    margin-bottom: 2px;
-}
-.score .code {
-  font-size: 130%;
-}
-.input_guide {
-  margin-top: 10px;
-  margin-bottom: 15px;
-  overflow: hidden;
-}
-#logout {
-  width: 10em;
-  margin-left: auto;
-}
+
+/*# sourceMappingURL=application.css.map */
