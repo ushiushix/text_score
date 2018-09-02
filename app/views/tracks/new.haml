@@ -4,8 +4,12 @@
 :javascript
   $(document).ready(function() {
     var note_add_func = function() {
-      var newNote = $("#note").val() + " " + $("#note_st").val();
-      if ($("#note_gt").val() != '-') {
+      var newNote = $("#note").val();
+      if ($("#note_gt").val() == "0") {
+        newNote = "z";
+      }
+      newNote += " " + $("#note_st").val();
+      if ($("#note_gt").val() != '-' && $("#note_gt").val() != '0') {
         newNote += " " + $("#note_gt").val();
       }
       $("#track_score").beginningOfLine().insertAtCursor(newNote + "\n");
