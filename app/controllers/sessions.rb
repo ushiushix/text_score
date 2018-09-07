@@ -7,7 +7,7 @@ TScore::App.controllers :sessions do
   post :create do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
-      redirect url(:songs, :index)
+      redirect_back_or_default url(:songs, :index)
     elsif Padrino.env == :development && params[:bypass]
       account = Account.first
       set_current_account(account)
