@@ -20,6 +20,7 @@ TScore::App.controllers :tracks do
   post :create do
     @track = Track.new(params[:track])
     @song = Song.find(params[:song_id])
+    @patch_names = GM_PATCHES_LOCALIZED
     unless @song.account == current_account || current_account.role == 'admin'
       flash[:error] = '編集する権限がありません'
       render 'tracks/new'
@@ -55,6 +56,7 @@ TScore::App.controllers :tracks do
   put :update, :with => :id do
     @track = Track.find(params[:id])
     @song = @track.song
+    @patch_names = GM_PATCHES_LOCALIZED
     unless @song.account == current_account || current_account.role == 'admin'
       flash[:error] = '編集する権限がありません'
       render 'tracks/edit'
