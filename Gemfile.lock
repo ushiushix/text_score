@@ -79,7 +79,7 @@ GEM
       mime-types (< 3)
       padrino-core (= 0.14.1.1)
     padrino-support (0.14.1.1)
-    puma (3.11.0)
+    puma (3.12.6)
     puma_worker_killer (0.1.0)
       get_process_mem (~> 0.2)
       puma (>= 2.7, < 4)
