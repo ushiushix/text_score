@@ -13,7 +13,7 @@ RUN apt-get update \
   && ln -sf /data/t_score_production.db ./db/t_score_production.db \
   && ln -sf /data/ts_secret config/ts_secret \
   && rm -rf log && ln -s /data/log ./log \
-  && rm -rf tmp && mkdir tmp \
+  && rm -rf tmp && ln -sf /data/tmp ./tmp \
   && ln -sf /data/timidity.cfg /etc/timidity/timidity.cfg
 EXPOSE 8080
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "production"]
