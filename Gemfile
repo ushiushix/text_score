@@ -14,7 +14,7 @@ gem 'bcrypt'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'sass'
 gem 'haml'
-gem 'activerecord', '~> 4.2.9', :require => "active_record"
+gem 'activerecord', '~> 7.0.3', :require => "active_record"
 gem 'sqlite3'
 gem 'midilib'
 gem 'text_sequencer', :git => 'https://github.com/ushiushix/text_sequencer.git'
@@ -33,7 +33,7 @@ group :development do
 end
 
 # Padrino Stable Gem
-gem 'padrino', '~> 0.14.1'
+gem 'padrino', '~> 0.15.1'
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
