@@ -1,4 +1,4 @@
-class AddProgramToTrack < ActiveRecord::Migration
+class AddProgramToTrack < ActiveRecord::Migration[4.2]
   def self.up
     change_table :tracks do |t|
       t.integer :program
