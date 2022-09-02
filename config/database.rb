@@ -13,22 +13,19 @@
 #     :socket    => '/tmp/mysql.sock'
 #   }
 #
-ActiveRecord::Base.configurations[:development] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 't_score_development.db')
-
-}
-
-ActiveRecord::Base.configurations[:production] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 't_score_production.db')
-
-}
-
-ActiveRecord::Base.configurations[:test] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 't_score_test.db')
-
+ActiveRecord::Base.configurations = {
+  development: {
+    :adapter => 'sqlite3',
+    :database => Padrino.root('db', 't_score_development.db')
+  },
+  production: {
+    :adapter => 'sqlite3',
+    :database => Padrino.root('db', 't_score_production.db')
+  },
+  test: {
+    :adapter => 'sqlite3',
+    :database => Padrino.root('db', 't_score_test.db')
+  },
 }
 
 # Setup our logger
@@ -57,7 +54,7 @@ ActiveSupport.use_standard_json_time_format = true
 ActiveSupport.escape_html_entities_in_json = false
 
 # Now we can establish connection with our db.
-ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations[Padrino.env])
+ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations.configs_for(env_name: Padrino.env, name: :primary))
 
 # Timestamps are in the utc by default.
 ActiveRecord::Base.default_timezone = :utc
