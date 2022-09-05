@@ -57,4 +57,4 @@ ActiveSupport.escape_html_entities_in_json = false
 ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations.configs_for(env_name: Padrino.env, name: :primary))
 
 # Timestamps are in the utc by default.
-ActiveRecord::Base.default_timezone = :utc
+ActiveRecord.default_timezone = :utc
