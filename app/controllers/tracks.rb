@@ -91,7 +91,7 @@ TScore::App.controllers :tracks do
      body]
   end
 
-    get :play_data_mp3, :map => '/tracks/play/:id.mp3' do
+  get :play_data_mp3, :map => '/tracks/play/:id.mp3' do
     track = Track.find(params[:id])
     song = track.song
     body = MidiConverter.new.render_to_mp3(song, [track])

@@ -13,9 +13,13 @@ function player() {
 }
 function play(url, callback) {
   var time = Math.floor( new Date().getTime() / 1000 );
+  var playURL = url;
+  if (url.indexOf('?') < 0) {
+		playURL = url + "?" + "t=" + time;
+  }
   player().on('ended', callback);
   player().on('error', callback);
-  player().load(url + "?" + "t=" + time);
+  player().load(playURL);
   player().play();
 }
 

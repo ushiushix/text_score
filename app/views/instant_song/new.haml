@@ -1,0 +1,84 @@
+-# -*- coding: utf-8 -*-
+- @title = 'お試し演奏'
+= javascript_include_tag 'audio5.min'
+
+:javascript
+  $(document).ready(function() {
+    player();
+    var playDataURL = function(baseURL) {
+      let urlEncodedData = "",
+          urlEncodedDataPairs = [],
+          name;
+      const fields = [
+        'track[program]',
+        'track[score]',
+        'track[track_number]'
+      ];
+      for (const name of fields ) {
+        urlEncodedDataPairs.push( encodeURIComponent( name ) + '=' + encodeURIComponent( document.f[name].value ) );
+      }
+      urlEncodedData = urlEncodedDataPairs.join( '&' ).replace( /%20/g, '+' );
+      return baseURL + "?" + urlEncodedData;
+    };
+    var play_func = function() {
+      const validateURL = playDataURL('#{url(:instant_song, :validate)}');
+      const XHR = new XMLHttpRequest();
+      XHR.addEventListener( 'load', function(event) {
+        if (XHR.status == '200') {
+          real_play_func();
+        } else {
+          response = JSON.parse(XHR.responseText);
+          var message = '';
+          for (key in response.errors) {
+            message += key + ": " + response.errors[key];
+          }
+          alert(message);
+        }
+      } );
+      XHR.addEventListener( 'error', function(event) {
+        alert('接続に失敗しました!');
+      } );
+      XHR.open( 'GET', validateURL);
+      XHR.send();
+    };
+    var real_play_func = function() {
+      $('#play_button').unbind('click')
+      .click(stop_func).text('停止');
+      play(playDataURL('#{url(:instant_song, :play_data_mp3)}'), function(){
+        $('#play_button').unbind('click')
+        .click(play_func).text('再生');
+      });
+    };
+    var stop_func = function(){
+      player().pause();
+      $('#play_button').unbind('click')
+      .click(play_func).text('再生');
+    };
+    var note_add_func = function() {
+      var newNote = $("#note").val();
+      if ($("#note_gt").val() == "0") {
+        newNote = "z";
+      }
+      newNote += " " + $("#note_st").val();
+      if ($("#note_gt").val() != '-' && $("#note_gt").val() != '0') {
+        newNote += " " + $("#note_gt").val();
+      }
+      $("#track_score").beginningOfLine().insertAtCursor(newNote + "\n");
+      $(this).focus();
+      return false;
+    };
+    $('#add_button').click(note_add_func);
+    $('.input_guide').keypress(function(e) {
+        if (e.which == 13 || e.which == 32) { // Enter key or Space key
+          note_add_func(e);
+          $(e.target).focus();
+          return false;
+        }
+    });
+    $('#play_button').click(play_func);
+    $('#main').focus();
+  });
+
+%h2.title{tabindex: '0', id: 'main'} お試し演奏
+=form_for :track, '#', :class => :form, :name => 'f', :action => 'GET' do |f|
+  =partial "instant_song/form", :locals => { :f => f }

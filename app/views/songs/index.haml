@@ -5,6 +5,7 @@
   %h2.title
     ="#{current_account.name}さんの曲一覧"
   %ul#my_songs{:class => 'bulleted'}
+    %li= link_to 'お試し演奏', url(:instant_song, :new)
     %li= link_to '作曲開始', url(:songs, :new)
     = partial 'songs/song', :collection => @my_songs
 #public_songs_box

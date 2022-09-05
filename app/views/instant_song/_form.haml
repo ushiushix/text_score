@@ -35,8 +35,6 @@
       =f.label :score, :caption => (f.error_message_on :score)
     .score
       =f.text_area :score, :class => :code, :value => h(@track.score), :cols=> '30', :rows => 20, :autocomplete => 'off', :autocorrect => 'off', :autocapitalize => 'off', :spellcheck => 'false'
-  %input{:type => :hidden, :class => :hidden, :name => 'song_id', :value => @song.id}
-  %input{:type => :hidden, :class => :hidden, :name => 'play_now', :value => 'false'}
   :javascript
     $(function(){
       if ($('span[class="error"]').length > 0) {
@@ -45,9 +43,6 @@
     });
 #op_panel
   %ul
-    %li= f.submit '保存', :class => :button
     %li
       %button{id: 'play_button', type: 'button'} 再生
-    %li
-      %button{id: 'song_show_button', type: 'button'} 曲に戻る
-    %li= link_to 'お試し演奏を開く', url(:instant_song, :new), :target => '_blank'
+    %li= f.submit '戻る', :onclick => "window.location='#{url(:songs, :index)}';return false", :class => :button
