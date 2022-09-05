@@ -90,7 +90,7 @@ TScore::App.controllers :songs do
     body = MidiConverter.new.render_to_mp3(song, tracks)
     [200,
      {'Content-Type' => 'audio/mp3',
-       'Content-Disposition' => "attachment; filename*=UTF-8''#{URI::escape(song.title)}.mp3",
+       'Content-Disposition' => "attachment; filename*=UTF-8''#{URI.encode_www_form_component(song.title)}.mp3",
        'Accept-Ranges' => 'bytes',
        'Expires' => (Time.now + 5).rfc822 },
      body]
