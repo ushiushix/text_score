@@ -14,7 +14,7 @@ gem 'bcrypt'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'sass'
 gem 'haml'
-gem 'activerecord', '~> 6.0', :require => "active_record"
+gem 'activerecord', '~> 7.0', :require => "active_record"
 gem 'sqlite3', '~> 1.4.4'
 gem 'midilib'
 gem 'text_sequencer', :git => 'https://github.com/ushiushix/text_sequencer.git'
