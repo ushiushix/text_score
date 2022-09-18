@@ -73,6 +73,30 @@ TScore::App.controllers :songs do
     end
   end
 
+  delete :destroy, :with => :id do
+    @song = Song.find(params[:id])
+    unless @song
+      flush[:warning] = '曲が存在しません'
+      halt 404
+    end
+    title = @song.title
+    unless @song.account == current_account || current_account.role == 'admin'
+      flash[:error] = '削除する権限がありません'
+      redirect url(:songs, :show_extra, :id => @song.id)
+    end
+    if @song.tracks.size > 0
+      flash[:error] = '最初にトラックをすべて削除してください'
+      redirect url(:songs, :show_extra, :id => @song.id)
+    end
+    if @song.destroy
+      flash[:notice] = "曲 #{title} が削除されました。"
+      redirect url(:songs, :index)
+    else
+      flash[:notice] = '削除が失敗しました'
+      redirect url(:songs, :show_extra, :id => @song.id)
+    end
+  end
+
   get :play_data_midi, :map => '/songs/play/:id.mid' do
     song = Song.find(params[:id])
     body = MidiConverter.new.convert(song)
