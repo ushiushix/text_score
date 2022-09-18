@@ -1,7 +1,7 @@
 TScore::Admin.controllers :songs do
   get :index do
     @title = "Songs"
-    @songs = Song.all
+    @songs = Song.all.page(params[:page])
     @song_accounts = {}
     @songs.each do |s|
       @song_accounts[s.id] = Account.find(s.account_id).name rescue 'Unknown'
