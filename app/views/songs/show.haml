@@ -55,5 +55,5 @@
         %button{id: 'play_button', type: 'button'} 再生
       %li
         %button{id: 'edit_button', type: 'button'} 曲情報変更
-      %li= link_to 'その他の機能', url(:songs, :show_extra, :id => @song.id)
+      %li= link_to 'その他の機能・削除', url(:songs, :show_extra, :id => @song.id)
       %li= link_to '曲の一覧へ', url(:songs, :index)
