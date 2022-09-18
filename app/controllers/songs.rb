@@ -65,7 +65,7 @@ TScore::App.controllers :songs do
       flash[:error] = '編集する権限がありません'
       render 'songs/edit'
     end
-    if @song.update_attributes(params[:song])
+    if @song.update(params[:song])
       flash[:notice] = '曲が更新されました。'
       redirect url(:songs, :show, :id => @song.id)
     else

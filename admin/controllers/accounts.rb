@@ -39,7 +39,7 @@ TScore::Admin.controllers :accounts do
     @title = pat(:update_title, :model => "account #{params[:id]}")
     @account = Account.find(params[:id])
     if @account
-      if @account.update_attributes(params[:account])
+      if @account.update(params[:account])
         flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:accounts, :index)) :

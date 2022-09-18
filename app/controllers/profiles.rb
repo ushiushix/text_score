@@ -30,7 +30,7 @@ TScore::App.controllers :profiles do
       flash[:error] = 'パスワードと確認用パスワードが一致しません。'
       render 'profiles/edit'
     end
-    if @account.update_attributes(upd)
+    if @account.update(upd)
       flash[:notice] = 'プロファイルが更新されました。'
       redirect url(:profiles, :show, :id => @account.id)
     else

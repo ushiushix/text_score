@@ -43,7 +43,7 @@ TScore::Admin.controllers :songs do
     @title = pat(:update_title, :model => "song #{params[:id]}")
     @song = Song.find(params[:id])
     if @song
-      if @song.update_attributes(params[:song])
+      if @song.update(params[:song])
         flash[:success] = pat(:update_success, :model => 'Song', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:songs, :index)) :
