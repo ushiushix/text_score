@@ -57,8 +57,8 @@
 %ul
   %li= link_to 'MP3ダウンロード', url(:songs, :play_data_mp3, :id => @song.id)
   %li= link_to 'MIDIダウンロード', url(:songs, :play_data_midi, :id => @song.id)
-%h3.title 削除
-%p 曲を削除する前にまずすべてのトラックを削除してください。トラックは中身を空にして保存することで削除できます。
+%h3.title この曲を削除
+%p 曲を削除する前にまずすべての楽譜を削除してください。楽譜は中身を空にして保存することで削除できます。
 %ul
   %li= link_to "曲を削除", url(:songs, :destroy, :id => @song.id), :method => :delete, :confirm => "本当に削除しますか?"
 #op_panel
