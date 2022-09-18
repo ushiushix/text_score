@@ -55,7 +55,10 @@
       .click(play_func).text('再生');
     };
     var note_add_func = function() {
-      var newNote = $("#note").val();
+      var newNote = $("#inst_note").val();
+      if ($('#drum_mode').prop('checked')) {
+        newNote = $("#drum_note").val();
+      }
       if ($("#note_gt").val() == "0") {
         newNote = "z";
       }
@@ -67,6 +70,19 @@
       $(this).focus();
       return false;
     };
+    var drum_mode_toggle = function() {
+      if ($('#drum_mode').prop('checked')) {
+        $('#inst_choice').hide();
+        $('#inst_note_guide').hide();
+        $('#drum_note_guide').show();
+        $('#track_number').val(9);
+      } else {
+        $('#inst_choice').show();
+        $('#inst_note_guide').show();
+        $('#drum_note_guide').hide();
+        $('#track_number').val(1);
+      }
+    }
     $('#add_button').click(note_add_func);
     $('.input_guide').keypress(function(e) {
         if (e.which == 13 || e.which == 32) { // Enter key or Space key
@@ -76,6 +92,7 @@
         }
     });
     $('#play_button').click(play_func);
+    $('#drum_mode').change(drum_mode_toggle);
     $('#main').focus();
   });
 
