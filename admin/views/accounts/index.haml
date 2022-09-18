@@ -52,3 +52,13 @@
                   = form_tag url(:accounts, :destroy, :id => account.id), :method => :delete do
                     =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
                     .btn.btn-default.btn-small.cancel=pat(:cancel)
+  %p
+    - if @accounts.prev_page
+      =link_to('前へ', url(:accounts, :index, :page => @accounts.prev_page))
+    - else
+      前へ
+    ← #{@accounts.current_page} / #{@accounts.total_pages} →
+    - if @accounts.next_page
+      =link_to('次へ', url(:accounts, :index, :page => @accounts.next_page))
+    - else
+      次へ
