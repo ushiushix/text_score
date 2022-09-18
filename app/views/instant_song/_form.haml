@@ -1,26 +1,20 @@
 -# -*- coding: utf-8 -*-
 %ul#track_info
-  - if @track.mode == :melody
-    %li
-      =f.label :program, :caption => '楽器'
-      %select{name:'track[program]', id: 'track_program'}
-        -@patch_names.each_with_index do |name, i|
-          %option{value:i, selected:(@track.program == i)} #{name}
-    =f.hidden_field :track_number, :value => @track.track_number || @track_numbers.first
-  - else
-    %li
-      =f.label :name, :caption => '楽器'
-      =f.text_field :name
-    =f.hidden_field :track_number, :value => @track.track_number
+  %li#inst_choice
+    =f.label :program, :caption => '楽器'
+    %select{name:'track[program]', id: 'track_program'}
+      -@patch_names.each_with_index do |name, i|
+        %option{value:i, selected:(@track.program == i)} #{name}
+  =f.hidden_field :track_number, :value => 1, :id => 'track_number'
 #score_box
   %h3.title 入力ガイド
   .input_guide
-    -if @track.mode == :melody
-      %label{for: 'note'} 音符:
-      =select_tag :note, options: Track::NOTES_INST, selected: Track::DEFAULT_NOTE, id: 'note'
-    -else
+    %span#inst_note_guide
+      %label{for: 'inst_note'} 音符:
+      =select_tag :note, options: Track::NOTES_INST, selected: Track::DEFAULT_NOTE, id: 'inst_note'
+    %span#drum_note_guide.hidden
       %label{for: 'note'} 打楽器:
-      %select{name:'track_note', id: 'note'}
+      %select{name:'track_note', id: 'drum_note'}
         -Track::NOTES_DRUM.each do |num,name|
           %option{value:num} #{name}(#{num})
     %label{for: 'note_st'} ステップ:
@@ -37,12 +31,15 @@
       =f.text_area :score, :class => :code, :value => h(@track.score), :cols=> '30', :rows => 20, :autocomplete => 'off', :autocorrect => 'off', :autocapitalize => 'off', :spellcheck => 'false'
   :javascript
     $(function(){
-      if ($('span[class="error"]').length > 0) {
-        alert("エラーがあります");
-      }
+      $('#inst_choice').show();
+      $('#inst_note_guide').show();
+      $('#drum_note_guide').hide();
     });
 #op_panel
   %ul
     %li
       %button{id: 'play_button', type: 'button'} 再生
+    %li
+      %input{id: 'drum_mode', type: 'checkbox'} 
+      %label{for: 'drum_mode'} ドラムモード
     %li= f.submit '戻る', :onclick => "window.location='#{url(:songs, :index)}';return false", :class => :button
