@@ -10,7 +10,7 @@ You can input multi-track scores by text_sequencer notation, and make it renderd
 ## Setup
 
 You will need:
-- ruby 2.4.x or higher
+- ruby 3.1.x or higher
 - timidity++ properly configured with good GS-compatible soundfont like FluidR3_GM2
 - lame encoder
 
