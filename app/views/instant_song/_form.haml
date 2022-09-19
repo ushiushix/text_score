@@ -40,6 +40,8 @@
     %li
       %button{id: 'play_button', type: 'button'} 再生
     %li
+      %button{id: 'clear_button', type: 'button'} クリアー
+    %li
       %input{id: 'drum_mode', type: 'checkbox'} 
       %label{for: 'drum_mode'} ドラムモード
     %li= f.submit '戻る', :onclick => "window.location='#{url(:songs, :index)}';return false", :class => :button
