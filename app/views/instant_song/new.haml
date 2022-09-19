@@ -92,6 +92,9 @@
         }
     });
     $('#play_button').click(play_func);
+    $('#clear_button').click(function() {
+      $('#track_score').val('');
+    });
     $('#drum_mode').change(drum_mode_toggle);
     $('#main').focus();
   });
