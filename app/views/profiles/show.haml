@@ -1,7 +1,7 @@
 -# -*- coding: utf-8 -*-
 - @title = "ユーザー情報"
 #logout
-  = button_to 'ログアウト', url(:sessions, :destroy), :method => :delete, :confirm => true
+  = button_to 'ログアウト', url(:sessions, :destroy), :method => :delete, :confirm => 'ログアウトしますか?'
 
 #profile_box
   %h2.title
