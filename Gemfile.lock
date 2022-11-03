@@ -1,25 +1,25 @@
 GIT
   remote: https://github.com/ushiushix/text_sequencer.git
-  revision: 4a49de715c7f4444d426bbc4f08ddbb99bd10a67
+  revision: 2ff40a442b8c4a2cfbdbadb3b5ed95c7560b7d7b
   specs:
-    text_sequencer (1.0.0)
+    text_sequencer (1.1.1)
       midilib (>= 2.0.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview (7.0.3.1)
-      activesupport (= 7.0.3.1)
+    actionview (7.0.4)
+      activesupport (= 7.0.4)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    activemodel (7.0.3.1)
-      activesupport (= 7.0.3.1)
-    activerecord (7.0.3.1)
-      activemodel (= 7.0.3.1)
-      activesupport (= 7.0.3.1)
-    activesupport (7.0.3.1)
+    activemodel (7.0.4)
+      activesupport (= 7.0.4)
+    activerecord (7.0.4)
+      activemodel (= 7.0.4)
+      activesupport (= 7.0.4)
+    activesupport (7.0.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -68,10 +68,10 @@ GEM
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.8-x86_64-darwin)
+    nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
     padrino (0.15.1)
       padrino-admin (= 0.15.1)
@@ -104,7 +104,7 @@ GEM
       mime-types (< 4)
       padrino-core (= 0.15.1)
     padrino-support (0.15.1)
-    puma (5.6.5)
+    puma (6.0.0)
       nio4r (~> 2.0)
     puma_worker_killer (0.3.1)
       get_process_mem (~> 0.2)
@@ -125,19 +125,19 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rr (3.1.0)
-    rspec (3.11.0)
-      rspec-core (~> 3.11.0)
-      rspec-expectations (~> 3.11.0)
-      rspec-mocks (~> 3.11.0)
-    rspec-core (3.11.0)
-      rspec-support (~> 3.11.0)
-    rspec-expectations (3.11.0)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.0)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.11.0)
-    rspec-mocks (3.11.1)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.11.0)
-    rspec-support (3.11.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -152,7 +152,7 @@ GEM
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     sqlite3 (1.4.4)
-    temple (0.8.2)
+    temple (0.9.1)
     thor (1.2.1)
     tilt (2.0.11)
     tzinfo (2.0.5)
@@ -167,7 +167,7 @@ DEPENDENCIES
   activesupport (>= 3.1)
   bcrypt
   bcrypt-ruby
-  haml
+  haml (~> 5.0)
   kaminari
   midilib
   padrino (~> 0.15.1)
@@ -178,6 +178,7 @@ DEPENDENCIES
   rr
   rspec
   sass
+  sinatra (~> 2.0)
   sinatra-flash
   sqlite3 (~> 1.4.4)
   text_sequencer!
