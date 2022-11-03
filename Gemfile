@@ -6,6 +6,8 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
+# sinatra 3.x no longer works with padrino 0.15.1
+gem 'sinatra', '~> 2.0'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
@@ -13,7 +15,7 @@ gem 'activesupport', '>= 3.1'
 gem 'bcrypt'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'sass'
-gem 'haml'
+gem 'haml', '~> 5.0'
 gem 'activerecord', '~> 7.0', :require => "active_record"
 gem 'sqlite3', '~> 1.4.4'
 gem 'midilib'
