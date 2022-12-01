@@ -7,7 +7,7 @@ source 'https://rubygems.org'
 # Project requirements
 gem 'rake'
 # sinatra 3.x no longer works with padrino 0.15.1
-gem 'sinatra', '~> 2.0'
+gem 'sinatra', '~> 2.2'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
